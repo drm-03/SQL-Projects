@@ -1,0 +1,39 @@
+/* What does the app's SQL look like? */
+CREATE TABLE twitter (user_id INTEGER, date TEXT, content text);
+
+INSERT INTO TWITTER VALUES (1, '02-27-2022', 'Just Joined Twitter!');
+INSERT INTO TWITTER VALUES (1,'02-27-2022', 'How do yall use this?');
+INSERT INTO TWITTER VALUES (1, '02-27-2022', 'I wanna start drama!');
+INSERT INTO TWITTER VALUES (1, '02-27-2022', "Beyonce's horrible and cannot sing");
+
+select * from twitter;
+
+/** user edits to not sound as harsh**/
+
+UPDATE twitter set content="Beyonce's overrated" Where content = "Beyonce's horrible and cannot sing";
+
+select * from twitter;
+
+/** user tweets more after getting backlash**/
+INSERT INTO TWITTER VALUES (1, '02-27-2022', 'This is going to get people sooo mad!');
+INSERT INTO TWITTER VALUES (1, '02-28-2022', 'Ok this is getting a little out of hand');
+INSERT INTO TWITTER VALUES (1, '03-01-2022', "Y'all are crazy, I am just going to delete the tweets now, Im sorry!!");
+
+SELECT * FROM twitter;
+
+/** user now deletes tweets**/
+DELETE from twitter where content="Beyonce's overrated";
+DELETE from twitter where content="I wanna start drama!";
+DELETE FROM TWITTER WHERE CONTENT="This is going to get people sooo mad!";
+
+SELECT * FROM TWITTER;
+
+/** added views to preview how much the tweet has been viewed by other users**/
+ALTER TABLE twitter add Views integer;
+
+UPDATE twitter set views=5 where content='Just Joined Twitter!';
+UPDATE twitter set views=7 where content='How do yall use this?';
+UPDATE twitter set views=1583 where content='Ok this is getting a little out of hand';
+UPDATE twitter set views=17960 where content="Y'all are crazy, I am just going to delete the tweets now, Im sorry!!";
+
+SELECT * FROM TWITTER;
