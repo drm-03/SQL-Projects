@@ -1,0 +1,20 @@
+CREATE TABLE Store (id INTEGER PRIMARY KEY, Name TEXT, Price INTEGER, Stock INTEGER, Selling TEXT);
+
+INSERT INTO Store VALUES (1, "Pens", 1, 15, "YES");
+INSERT INTO Store VALUES (2, "USB-C Charger", 5, 75, "YES" );
+INSERT INTO Store VALUES (3, "Lightning Charger", 8, 75, "YES" );
+insert into store VALUES (4, "Candy", 2.15, 250, "YES");
+INSERT INTO Store VALUES (5, "iMac", 1000, 15, "YES");
+INSERT INTO Store VALUES (6, "Dell",325, 27, "YES" );
+INSERT INTO Store VALUES (7, "Mice", 25, 100, "YES");
+INSERT INTO Store VALUES (8, "Keyboard", 33, 89, "yes");
+INSERT INTO Store VALUES (9, "Mousepad", 11, 59, "yes");
+INSERT INTO Store VALUES (10, "Headset", 35, 77, "yes");
+INSERT INTO Store VALUES (11, "Speakers", 75, 23, "no");
+INSERT INTO Store VALUES (12, "Wrist Rest", 12, 88, "no");
+INSERT INTO Store VALUES (13, "Desk", 300, 15, "yes");
+INSERT INTO Store VALUES (14, "Drone", 275, 11, "yes");
+INSERT INTO Store VALUES (15, "Samsung OLED", 1275, 7, "yes");
+
+SELECT * FROM STORE;
+SELECT SUM(STOCK*PRICE) FROM STORE;
