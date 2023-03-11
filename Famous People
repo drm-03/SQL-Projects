@@ -1,0 +1,87 @@
+/* Create table about the people and what they do here */
+CREATE table Movie_Stars (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, famous_movie TEXT, married TEXT, Spouse TEXT);
+
+INSERT INTO MOVIE_STARS VALUES (1, "Tom Cruise", 52, "Top Gun", 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (2, "Saoirse Ronan", 24, "Lady Bird", 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (3, 'Timothee Chalamet', 22, 'Dune', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (4, 'Anya Taylor Joy', 21, 'The Menu', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (5, 'Tom Hanks', 57, 'Forrest Gump', 'Yes', 'Rita Wilson');
+INSERT INTO MOVIE_STARS VALUES (6, 'Angelina Jolie', 43, 'Girl, Interrupted', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (7, 'Winona Ryder', 45, 'Girl, Interrupted', 'Yes', 'Scott Mackinlay Hahn');
+INSERT INTO MOVIE_STARS VALUES (8, 'Margot Robbie', 28, 'Suicide Squad', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (9, 'Meryl Streep', 63, "Sophie's Choice", 'Yes', 'Don Gummer');
+INSERT INTO MOVIE_STARS VALUES (10, 'Oscar Isaac', 44, 'Ex Machina', 'Yes', 'Elvira Lind');
+INSERT INTO MOVIE_STARS VALUES (11, 'Florence Pugh', 27, 'Midsommar', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (12, 'Mia Goth', 30, 'Pearl', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (13, 'Michelle Yeoh', 60, 'Crazy Rich Asians', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (14, 'Glenn Close', 75, 'The World According to Garp', 'Yes', 'David Evans Shaw');
+INSERT INTO MOVIE_STARS VALUES (15, 'Jane Fonda', 85, 'Barbarella', 'No', 'N/A');
+INSERT INTO MOVIE_STARS VALUES (16, 'Zendaya', 24, 'Spider-Man: Homecoming', 'No', 'N/A');
+
+CREATE TABLE Box_Office (id integer primary key, title text, worldwide integer);
+
+INSERT INTO Box_Office VALUES (1, 'Top Gun', 357.3);
+INSERT INTO Box_Office VALUES (2, 'Lady Bird', 80);
+INSERT INTO Box_Office VALUES (3, 'Dune', 402);
+INSERT INTO Box_Office VALUES (4, 'The Menu', 79.6);
+INSERT INTO Box_Office VALUES (5, 'Forrest Gump', 678.2);
+insert into box_office values (6, 'Girl, Interrupted', 48.3);
+insert into box_office values (7, 'Suicide Squad', 746.8);
+insert into box_office values (8, "Sophie's Choice", 30.03);
+insert into box_office values (9, 'Ex Machina', 37.4);
+insert into box_office values (10, 'Midsommar', 47.9);
+insert into box_office values (11, 'Pearl', 9.4);
+insert into box_office values (12, 'Crazy Rich Asians', 238.8);
+insert into box_office values (13, 'The World According to Garp', 29.7);
+insert into box_office values (14, 'Barbarella', 5.5);
+insert into box_office values (15, 'Spider-Man: Homecoming', 880.1);
+
+CREATE TABLE Reviews (id integer primary key, title text, rotten_tomatoes integer);
+
+INSERT INTO Reviews VALUES (1, 'Top Gun', 58);
+INSERT INTO Reviews VALUES (2, 'Lady Bird', 99);
+INSERT INTO Reviews VALUES (3, 'Dune', 83);
+INSERT INTO Reviews VALUES (4, 'The Menu', 88);
+INSERT INTO reviews VALUES (5, 'Forrest Gump', 71);
+insert into reviews values (6, 'Girl, Interrupted', 53);
+insert into reviews values (7, 'Suicide Squad', 26);
+insert into reviews values (8, "Sophie's Choice", 78);
+insert into reviews values (9, 'Ex Machina', 92);
+insert into reviews values (10, 'Midsommar', 83);
+insert into reviews values (11, 'Pearl', 92);
+insert into reviews values (12, 'Crazy Rich Asians', 91);
+insert into reviews values (13, 'The World According to Garp', 70);
+insert into reviews values (14, 'Barbarella', 74);
+insert into reviews values (15, 'Spider-Man: Homecoming', 92);
+
+/**Actors that are married**/
+SELECT name as Actor, married as Married, spouse from movie_stars WHERE married = 'Yes';
+
+/**Actors from oldest to youngest**/
+SELECT name, age, famous_movie from movie_stars ORDER BY age DESC;
+
+/** Average Age of Actors Selected**/
+
+Select AVG(age) as 'Average Age' from movie_stars;
+
+/** Worldwide Box Office of all movies**/
+
+Select movie_stars.name, box_office.title, box_office.worldwide from box_office
+JOIN movie_stars
+on movie_stars.famous_movie=box_office.title ORDER BY WORLDWIDE DESC;
+
+/** Movies descending from rotten tomatoes reviews**/
+
+SELECT movie_stars.name, box_office.title, box_office.worldwide, reviews.rotten_tomatoes from box_office
+JOIN movie_stars
+on movie_stars.famous_movie=box_office.title
+JOIN reviews
+on reviews.title=box_office.title order by rotten_tomatoes desc;
+
+/** only movies above 350m**/
+
+SELECT movie_stars.name, box_office.title, box_office.worldwide, reviews.rotten_tomatoes from box_office
+JOIN movie_stars
+on movie_stars.famous_movie=box_office.title
+JOIN reviews
+on reviews.title=box_office.title WHERE worldwide>350 order by worldwide desc
