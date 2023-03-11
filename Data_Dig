@@ -133,7 +133,7 @@ CASE
 
 select avg(overseas) from topmovies;
 
-SELECT studio,title, overseas as "below_avg_overseas" from topmovies
+SELECT studio,title,overseas as "below_avg_overseas" from topmovies
     group by studio
     HAVING below_avg_overseas <=555;
     
